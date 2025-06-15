@@ -16,6 +16,11 @@ jobs:
         with:
           java-version: '21'
           # 用 1.8 版本覆盖环境中自带的 Java 11 版本
+      - name: Load Google Services File
+        env:
+          DATA: ${{ secrets.HA1_GOOGLE_SERVICES_JSON_BASE64 }}
+        run: echo $DATA | base64 -di > app/google-services.json
+          
       - id: get-project
       # 读取项目地址
         name: Get project name
